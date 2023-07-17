@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment-staging
+  labels:
+    app: nodeapp-staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeapp-staging
+  template:
+    metadata:
+      labels:
+        app: nodeapp-staging
+    spec:
+      containers:
+      - name: nodeserver-staging
+        image: registry.hub.docker.com/pttzx/nodeapp:latest
+        ports:
+        - containerPort: 3001
+      imagePullSecrets:
+       - name: regcred
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-service
+spec:
+  namespace: staging_namespace
+  type: NodePort
+  selector:
+    app: nodeapp 
+  ports:
+  - protocol: TCP
+    port: 3001
+    targetPort: 3001
+    nodePort: 31111
+
+---
+
+apiVersion: apps/v1
+kind: Namespace
+metadata:
+  name: staging_namespace
