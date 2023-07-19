@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
       - name: nodeserver
-        image: registry.hub.docker.com/pttzx/nodeapp:latest
+        image: registry.hub.docker.com/pttzx/nodeapp:##VERSION##
         ports:
-        - containerPort: 3000
+        - containerPort: 3001
       imagePullSecrets:
        - name: regcred
         
