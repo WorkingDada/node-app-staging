@@ -21,7 +21,6 @@ pipeline {
                 fileContents = fileContents.replaceAll("##VERSION##","params.Version")
                 sh "rm -f ${fileContentsTemplate}"
                 writeFile file: fileContentsTemplate, text: fileContents
-                writeFile file: fileContentsTemplate, 
             }
         }
     }
