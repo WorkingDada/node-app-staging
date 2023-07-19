@@ -1,5 +1,5 @@
 pipeline {
-    parameters{
+  parameters{
         string(name: 'Version', description: '', defaultValue: '', trim: true)
   }
   environment {
