@@ -18,7 +18,8 @@ pipeline {
             script {
                 def fileContentsTemplate = "${WORKSPACE}/deploymentservice.yml"
                 String fileContents = readFile(fileContentsTemplate)
-                fileContents = fileContents.replaceAll("##VERSION##",${params.Version})
+                def replace = ${params.Version}
+                fileContents = fileContents.replaceAll("##VERSION##",replace)
                 sh "rm -f ${fileContentsTemplate}"
                 writeFile file: fileContentsTemplate, text: fileContents
             }
